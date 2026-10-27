@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Ballıca Pide - Osman Usta'nın Yeri. Bağcılar Demirkapı'da pide, kahvaltı ve paket servis. Tel: 0212 474 60 16 - 0535 768 80 08">
+<meta name="description" content="Ballıca Pide - Osman Usta'nın Yeri. Bağcılar Demirkapı'da pide, kahvaltı ve çorba. Tel: 0212 474 60 16 - 0535 768 80 08">
 <title>Osman Usta Ballıca Pide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;600;700&display=swap">
 <style>
 html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
-/* Layout: kırmızı fırın bandı → sabit kategori çubuğu → kâğıt menü (fiyat noktalı satırlar) → sipariş sepeti → adres. Renkler tabeladan: hardal + kırmızı. */
+/* Layout: kırmızı fırın bandı → sabit kategori çubuğu → kâğıt menü (fiyat noktalı satırlar) → adres. Renkler tabeladan: hardal + kırmızı. */
 :root{
   --bg:#fbf6ea; --surface:#fffdf7; --paper:#fff8e8; --ink:#2a1a12; --muted:#6e5a4c;
   --mustard:#e2a92b; --mustard-soft:#f6e2b0; --red:#b3201c; --red-deep:#7e140f; --line:#ead9b8; --on-red:#fff6e6;
@@ -95,44 +95,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .row .name{font-weight:700;font-size:18px;min-width:0}
 .row .dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(5px);min-width:16px}
 .row .price{font:800 20px var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
-.add{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:2px solid var(--red);background:transparent;color:var(--red);font:800 20px/1 var(--body);cursor:pointer;display:grid;place-items:center}
-.add:hover{background:var(--red);color:var(--on-red)}
-.add.pop{animation:pop .3s}
-@keyframes pop{50%{transform:scale(1.25)}}
 .extra{margin-top:18px;background:var(--mustard-soft);border-radius:14px;padding:12px 16px;font-size:15px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .extra .row{padding:0;flex:1;min-width:220px}
 .two{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
 .clock{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--on-red);font-weight:700;font-size:14px;border-radius:999px;padding:4px 12px}
 
-/* SEPET */
-.cart{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ink);color:var(--bg);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -10px 30px rgba(0,0,0,.25)}
-.cart .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:12px}
-.cart b{font:800 22px var(--display);font-variant-numeric:tabular-nums}
-.cart button{font:700 16px var(--body);background:var(--mustard);color:#2a1a12;border:0;border-radius:999px;padding:11px 20px;cursor:pointer}
-.panel{position:fixed;inset:auto 0 0 0;z-index:30;max-height:80%;overflow:auto;background:var(--surface);border-top:4px solid var(--red);border-radius:22px 22px 0 0;box-shadow:0 -20px 60px rgba(0,0,0,.35);padding-bottom:env(safe-area-inset-bottom,0px)}
-.panel .wrap{padding-block:22px 26px;max-width:640px}
-.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.panel-head h3{font-size:26px}
-.x{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:6px 12px;font:600 14px var(--body);cursor:pointer}
-.line{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}
-.qty{display:flex;align-items:center;gap:8px}
-.qty button{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:700 16px var(--body);cursor:pointer}
-.total{display:flex;justify-content:space-between;font:800 24px var(--display);padding-top:14px}
-.howto{margin-top:16px;background:var(--mustard-soft);border-radius:14px;padding:14px 16px;font-size:15px}
-.howto strong{font-size:18px}
-.panel-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-.panel-actions .btn{padding:11px 18px;font-size:15px}
-.btn-red{background:var(--red);color:var(--on-red)}
-.btn-line{border-color:var(--line);color:var(--ink);background:transparent}
 
-/* NASIL */
-section.block{padding-block:56px 8px}
-.block h2{font-size:clamp(32px,5vw,48px);margin-bottom:24px}
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:s}
-.steps div{border-top:4px solid var(--mustard);padding-top:14px}
-.steps div::before{counter-increment:s;content:counter(s);font:800 40px var(--display);color:var(--red);display:block;line-height:1}
-.steps h3{font-size:21px;margin:8px 0 4px}
-.steps p{margin:0;color:var(--muted)}
 
 /* ADRES */
 .visit{display:grid;grid-template-columns:1.1fr 1fr;gap:24px}
@@ -145,7 +113,7 @@ section.block{padding-block:56px 8px}
 .hours dt{color:var(--muted);font-weight:600}
 .hours dd{margin:0;font-weight:700}
 
-footer{margin-top:64px;border-top:1px solid var(--line);padding-bottom:80px}
+footer{margin-top:64px;border-top:1px solid var(--line)}
 footer .wrap{padding-block:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:14px}
 
 @media (max-width:860px){
@@ -153,7 +121,7 @@ footer .wrap{padding-block:22px;display:flex;justify-content:space-between;flex-
   .pide-art{max-width:300px;margin:0 auto;order:-1}
   .order-card{grid-template-columns:1fr;padding:20px}
   .badge{width:68px;height:68px;font-size:11px}
-  .groups,.two,.steps,.visit{grid-template-columns:1fr}
+  .groups,.two,.visit{grid-template-columns:1fr}
   .sheet{padding:22px 18px}
 }
 </style>
@@ -162,7 +130,7 @@ footer .wrap{padding-block:22px;display:flex;justify-content:space-between;flex-
 
 <div class="top"><div class="wrap">
   <span>Kahvaltı <b>07.00 – 12.00</b> arası</span>
-  <span>Paket servis: <b class="num">0535 768 80 08</b></span>
+  <span>Tel: <b class="num">0212 474 60 16</b></span>
 </div></div>
 
 <header class="hero">
@@ -171,10 +139,10 @@ footer .wrap{padding-block:22px;display:flex;justify-content:space-between;flex-
       <div class="eyebrow">Bağcılar · Demirkapı</div>
       <h1>Ballıca <span>Pide</span></h1>
       <div class="sub">Osman Usta'nın Yeri</div>
-      <p class="lead">Patateslisinden pastırmalısına 19 çeşit pide, sabah kahvaltısı ve sıcak çorba. Paket servisle kapınıza geliyor.</p>
+      <p class="lead">Patateslisinden pastırmalısına 19 çeşit pide, sabah kahvaltısı ve sıcak çorba. Bağcılar Demirkapı'da sizi bekliyoruz.</p>
       <div class="cta">
         <a class="btn btn-gold" href="#menu">Menüyü Gör</a>
-        <a class="btn btn-ghost" href="tel:+905357688008">Sipariş Hattı</a>
+        <a class="btn btn-ghost" href="#adres">Adres ve İletişim</a>
       </div>
       <div class="facts">
         <div><b class="num">19</b>çeşit pide</div>
@@ -205,9 +173,9 @@ footer .wrap{padding-block:22px;display:flex;justify-content:space-between;flex-
 
 <div class="wrap order">
   <div class="order-card">
-    <div class="badge">Paket<br>Servis</div>
+    <div class="badge">Bize<br>Ulaşın</div>
     <div>
-      <h2>Telefonla sipariş verin</h2>
+      <h2>İletişim</h2>
       <div class="phones">
         <div class="phone"><div><small>Sabit hat</small><a href="tel:+902124746016">0212 474 60 16</a></div><button class="copy" type="button" id="copy-sabit" data-num="0212 474 60 16">Kopyala</button></div>
         <div class="phone"><div><small>Cep</small><a href="tel:+905357688008">0535 768 80 08</a></div><button class="copy" type="button" id="copy-cep" data-num="0535 768 80 08">Kopyala</button></div>
@@ -229,7 +197,6 @@ footer .wrap{padding-block:22px;display:flex;justify-content:space-between;flex-
     <h2>Menümüz</h2>
     <div><span class="stamp">Fiyatlar 12.10.2026 tarihinde güncellendi</span></div>
   </div>
-  <div class="wrap"><p style="margin:0;color:var(--muted)">Ürünlerin yanındaki <b style="color:var(--red)">+</b> ile sepetinizi hazırlayın, toplamı görün ve telefonda kolayca okuyun.</p></div>
 
   <section class="wrap menu-sec" id="pideler">
     <div class="sheet">
@@ -259,14 +226,6 @@ footer .wrap{padding-block:22px;display:flex;justify-content:space-between;flex-
     </div>
   </section>
 
-  <section class="wrap block">
-    <h2>Nasıl sipariş verilir?</h2>
-    <div class="steps">
-      <div><h3>Seçin</h3><p>Menüden istediklerinizi <b>+</b> ile sepete ekleyin.</p></div>
-      <div><h3>Arayın</h3><p>0212 474 60 16 veya 0535 768 80 08'i arayın.</p></div>
-      <div><h3>Afiyetle yiyin</h3><p>Siparişiniz paket servisle adresinize gelsin.</p></div>
-    </div>
-  </section>
 
   <section class="wrap block" id="adres" style="scroll-margin-top:80px">
     <h2>Bizi ziyaret edin</h2>
@@ -282,7 +241,7 @@ footer .wrap{padding-block:22px;display:flex;justify-content:space-between;flex-
           <dt>Kahvaltı</dt><dd class="num">07.00 – 12.00</dd>
           <dt>Sabit hat</dt><dd class="num">0212 474 60 16</dd>
           <dt>Cep</dt><dd class="num">0535 768 80 08</dd>
-          <dt>Servis</dt><dd>Paket servis mevcuttur</dd>
+          <dt>Adres</dt><dd>Bağcılar / İstanbul</dd>
         </dl>
       </div>
     </div>
@@ -294,22 +253,7 @@ footer .wrap{padding-block:22px;display:flex;justify-content:space-between;flex-
   <span>Fiyatlar 12.10.2026 tarihinde güncellenmiştir.</span>
 </div></footer>
 
-<div class="cart" id="cart" hidden><div class="wrap">
-  <div><span id="cart-count" class="num">0 ürün</span> · <b id="cart-total">₺0</b></div>
-  <button type="button" id="cart-open">Sepeti Gör</button>
-</div></div>
 
-<div class="panel" id="panel" hidden role="dialog" aria-label="Sepetiniz"><div class="wrap">
-  <div class="panel-head"><h3>Sepetiniz</h3><button class="x" type="button" id="panel-close">Kapat</button></div>
-  <div id="lines"></div>
-  <div class="total"><span>Toplam</span><span id="panel-total" class="num">₺0</span></div>
-  <div class="howto"><strong>Siparişi telefonla verin:</strong> <span class="num">0212 474 60 16</span> · <span class="num">0535 768 80 08</span><br>Arayınca bu listeyi okuyabilirsiniz.</div>
-  <div class="panel-actions">
-    <a class="btn btn-red" href="tel:+905357688008">Ara</a>
-    <button class="btn btn-line" type="button" id="copy-list">Listeyi Kopyala</button>
-    <button class="btn btn-line" type="button" id="clear">Sepeti Boşalt</button>
-  </div>
-</div></div>
 
 <script>
 var MENU={
@@ -327,41 +271,15 @@ var MENU={
     {g:"Gazlı İçecekler",items:[["Şişe İçecek",50],["Kutu İçecek",60],["1 Litre İçecek",80],["2,5 Litre İçecek",100]]}
   ]
 };
-var cart={}, prices={};
+
 function tl(n){return "₺"+n.toLocaleString("tr-TR")}
-function row(it){prices[it[0]]=it[1];return '<div class="row"><span class="name">'+it[0]+'</span><span class="dots"></span><span class="price">'+tl(it[1])+'</span><button class="add" type="button" data-n="'+it[0]+'" aria-label="'+it[0]+' sepete ekle">+</button></div>'}
+function row(it){return '<div class="row"><span class="name">'+it[0]+'</span><span class="dots"></span><span class="price">'+tl(it[1])+'</span></div>'}
 function groups(arr){return arr.map(function(g){return '<div class="group"><h4>'+g.g+'</h4>'+g.items.map(row).join("")+'</div>'}).join("")}
 document.getElementById("g-pide").innerHTML=groups(MENU.pide);
 document.getElementById("g-extra").innerHTML='<span>Her pideye yumurta eklenebilir.</span>'+row(["Yumurta Farkı",10]);
 document.getElementById("g-kahvalti").innerHTML=MENU.kahvalti.map(row).join("");
 document.getElementById("g-corba").innerHTML=MENU.corba.map(row).join("");
 document.getElementById("g-icecek").innerHTML=groups(MENU.icecek);
-
-function render(){
-  var names=Object.keys(cart),count=0,total=0;
-  names.forEach(function(n){count+=cart[n];total+=cart[n]*prices[n]});
-  document.getElementById("cart").hidden=count===0;
-  if(count===0)document.getElementById("panel").hidden=true;
-  document.getElementById("cart-count").textContent=count+" ürün";
-  document.getElementById("cart-total").textContent=tl(total);
-  document.getElementById("panel-total").textContent=tl(total);
-  document.getElementById("lines").innerHTML=names.map(function(n){
-    return '<div class="line"><span><b>'+n+'</b><br><small style="color:var(--muted)">'+tl(prices[n])+' / adet</small></span><span class="qty"><button type="button" data-d="-1" data-n="'+n+'" aria-label="Azalt">−</button><span class="num">'+cart[n]+'</span><button type="button" data-d="1" data-n="'+n+'" aria-label="Artır">+</button></span><b class="num">'+tl(cart[n]*prices[n])+'</b></div>'}).join("");
-}
-document.addEventListener("click",function(e){
-  var a=e.target.closest(".add");
-  if(a){var n=a.dataset.n;cart[n]=(cart[n]||0)+1;a.classList.remove("pop");void a.offsetWidth;a.classList.add("pop");render();return}
-  var q=e.target.closest(".qty button");
-  if(q){var m=q.dataset.n;cart[m]+=+q.dataset.d;if(cart[m]<=0)delete cart[m];render()}
-});
-document.getElementById("cart-open").onclick=function(){document.getElementById("panel").hidden=false};
-document.getElementById("panel-close").onclick=function(){document.getElementById("panel").hidden=true};
-document.getElementById("clear").onclick=function(){cart={};render()};
-document.getElementById("copy-list").onclick=function(){
-  var b=this,t=Object.keys(cart).map(function(n){return cart[n]+" x "+n}).join("\n")+"\nToplam: "+document.getElementById("panel-total").textContent;
-  try{navigator.clipboard.writeText(t).then(function(){b.textContent="Kopyalandı"},function(){b.textContent="Kopyalanamadı"})}catch(_){b.textContent="Kopyalanamadı"}
-  setTimeout(function(){b.textContent="Listeyi Kopyala"},1600);
-};
 document.querySelectorAll(".copy").forEach(function(b){
   b.addEventListener("click",function(){
     var link=b.parentElement.querySelector("a");
