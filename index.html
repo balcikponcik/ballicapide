@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ballıca Pide - Osman Usta'nın Yeri. Bağcılar Demirkapı'da pide, kahvaltı ve paket servis. Tel: 0212 474 60 16 - 0535 768 80 08">
+<title>Osman Usta Ballıca Pide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;600;700&display=swap">
+<style>
+html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: kırmızı fırın bandı → sabit kategori çubuğu → kâğıt menü (fiyat noktalı satırlar) → sipariş sepeti → adres. Renkler tabeladan: hardal + kırmızı. */
+:root{
+  --bg:#fbf6ea; --surface:#fffdf7; --paper:#fff8e8; --ink:#2a1a12; --muted:#6e5a4c;
+  --mustard:#e2a92b; --mustard-soft:#f6e2b0; --red:#b3201c; --red-deep:#7e140f; --line:#ead9b8; --on-red:#fff6e6;
+  --display:"Bricolage Grotesque","Arial Black",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1b1310; --surface:#251a15; --paper:#2a1e18; --ink:#f6ead6; --muted:#c3ab93;
+  --mustard:#f0b93d; --mustard-soft:#4a3618; --red:#d8352e; --red-deep:#5c0f0b; --line:#3d2b22; --on-red:#fff6e6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1b1310; --surface:#251a15; --paper:#2a1e18; --ink:#f6ead6; --muted:#c3ab93;
+  --mustard:#f0b93d; --mustard-soft:#4a3618; --red:#d8352e; --red-deep:#5c0f0b; --line:#3d2b22; --on-red:#fff6e6; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.05;text-wrap:balance;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--mustard);outline-offset:3px;border-radius:4px}
+.num{font-variant-numeric:tabular-nums}
+
+/* ÜST BAR */
+.top{background:var(--red-deep);color:var(--on-red);font-size:14px}
+.top .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 18px;padding-block:8px}
+.top b{color:var(--mustard)}
+
+/* HERO */
+.hero{background:radial-gradient(120% 90% at 85% 110%,#e2611e 0%,var(--red) 38%,var(--red-deep) 100%);color:var(--on-red);overflow:hidden}
+.hero .wrap{padding-block:48px 72px;display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center}
+.eyebrow{font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mustard)}
+.hero h1{font-size:clamp(46px,9vw,100px);font-weight:800;letter-spacing:-.02em;margin-top:10px}
+.hero h1 span{display:block;color:var(--mustard)}
+.hero .sub{font:500 22px var(--display);margin-top:10px;opacity:.9}
+.hero p.lead{max-width:36ch;font-size:19px;margin:18px 0 26px;opacity:.92}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 17px var(--body);padding:14px 22px;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer}
+.btn-gold{background:var(--mustard);color:#2a1a12}
+.btn-ghost{border-color:rgba(255,246,230,.55);color:var(--on-red);background:transparent}
+.btn:hover{transform:translateY(-1px)}
+.facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:30px;font-size:15px}
+.facts div b{display:block;font:800 26px var(--display);color:var(--mustard)}
+.pide-art{max-width:100%;width:100%;aspect-ratio:1/1;position:relative}
+.pide-art svg{width:100%;height:100%;display:block}
+.ember{position:absolute;bottom:8%;width:6px;height:6px;border-radius:50%;background:#ffc04a;opacity:0;animation:rise 4s linear infinite}
+@keyframes rise{0%{transform:translateY(0);opacity:0}15%{opacity:.9}100%{transform:translateY(-260px) translateX(20px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.ember{display:none}.btn:hover{transform:none}}
+
+/* TELEFON KARTI */
+.order{margin-top:-38px;position:relative;z-index:2}
+.order-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px 28px;display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;box-shadow:0 18px 40px -24px rgba(60,20,10,.45)}
+.badge{display:grid;place-items:center;width:88px;height:88px;border-radius:50%;background:var(--mustard);color:#2a1a12;font:800 14px/1.05 var(--display);text-align:center;text-transform:uppercase;letter-spacing:.04em}
+.order h2{font-size:26px}
+.phones{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px}
+.phone{flex:1 1 240px;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:14px;padding:10px 12px 10px 18px;background:var(--bg)}
+.phone small{display:block;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.phone a{font:800 clamp(21px,3.2vw,27px) var(--display);text-decoration:none;font-variant-numeric:tabular-nums;color:var(--red);white-space:nowrap}
+.copy{font:600 14px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 12px;border-radius:10px;cursor:pointer;flex-shrink:0}
+.copy.done{background:var(--mustard);color:#2a1a12;border-color:var(--mustard)}
+
+/* KATEGORİ ÇUBUĞU */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.catbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-top:56px}
+.catbar .wrap{display:flex;gap:8px;overflow-x:auto;padding-block:12px;scrollbar-width:none}
+.catbar a{flex-shrink:0;text-decoration:none;font-weight:700;font-size:15px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.catbar a.on{background:var(--red);border-color:var(--red);color:var(--on-red)}
+
+/* MENÜ */
+.menu-head{padding-block:40px 8px;display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:16px}
+.menu-head h2{font-size:clamp(40px,6vw,64px)}
+.menu-head p{margin:0;color:var(--muted);max-width:40ch}
+.stamp{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:2px solid var(--red);color:var(--red);border-radius:8px;padding:4px 10px;transform:rotate(-2deg)}
+.menu-sec{scroll-margin-top:80px;padding-block:28px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px 32px;position:relative}
+.sheet-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px 16px;margin-bottom:6px}
+.sheet-head h3{font-size:32px;color:var(--red)}
+.sheet-head span{color:var(--muted);font-size:15px}
+.groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 48px}
+.group h4{font:700 13px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:22px 0 4px;display:flex;align-items:center;gap:10px}
+.group h4::after{content:"";flex:1;height:1px;background:var(--line)}
+.row{display:flex;align-items:center;gap:10px;padding:9px 0}
+.row .name{font-weight:700;font-size:18px;min-width:0}
+.row .dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(5px);min-width:16px}
+.row .price{font:800 20px var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.add{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:2px solid var(--red);background:transparent;color:var(--red);font:800 20px/1 var(--body);cursor:pointer;display:grid;place-items:center}
+.add:hover{background:var(--red);color:var(--on-red)}
+.add.pop{animation:pop .3s}
+@keyframes pop{50%{transform:scale(1.25)}}
+.extra{margin-top:18px;background:var(--mustard-soft);border-radius:14px;padding:12px 16px;font-size:15px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.extra .row{padding:0;flex:1;min-width:220px}
+.two{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
+.clock{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--on-red);font-weight:700;font-size:14px;border-radius:999px;padding:4px 12px}
+
+/* SEPET */
+.cart{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ink);color:var(--bg);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -10px 30px rgba(0,0,0,.25)}
+.cart .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:12px}
+.cart b{font:800 22px var(--display);font-variant-numeric:tabular-nums}
+.cart button{font:700 16px var(--body);background:var(--mustard);color:#2a1a12;border:0;border-radius:999px;padding:11px 20px;cursor:pointer}
+.panel{position:fixed;inset:auto 0 0 0;z-index:30;max-height:80%;overflow:auto;background:var(--surface);border-top:4px solid var(--red);border-radius:22px 22px 0 0;box-shadow:0 -20px 60px rgba(0,0,0,.35);padding-bottom:env(safe-area-inset-bottom,0px)}
+.panel .wrap{padding-block:22px 26px;max-width:640px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.panel-head h3{font-size:26px}
+.x{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:6px 12px;font:600 14px var(--body);cursor:pointer}
+.line{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:700 16px var(--body);cursor:pointer}
+.total{display:flex;justify-content:space-between;font:800 24px var(--display);padding-top:14px}
+.howto{margin-top:16px;background:var(--mustard-soft);border-radius:14px;padding:14px 16px;font-size:15px}
+.howto strong{font-size:18px}
+.panel-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.panel-actions .btn{padding:11px 18px;font-size:15px}
+.btn-red{background:var(--red);color:var(--on-red)}
+.btn-line{border-color:var(--line);color:var(--ink);background:transparent}
+
+/* NASIL */
+section.block{padding-block:56px 8px}
+.block h2{font-size:clamp(32px,5vw,48px);margin-bottom:24px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:s}
+.steps div{border-top:4px solid var(--mustard);padding-top:14px}
+.steps div::before{counter-increment:s;content:counter(s);font:800 40px var(--display);color:var(--red);display:block;line-height:1}
+.steps h3{font-size:21px;margin:8px 0 4px}
+.steps p{margin:0;color:var(--muted)}
+
+/* ADRES */
+.visit{display:grid;grid-template-columns:1.1fr 1fr;gap:24px}
+.addr{background:var(--red);color:var(--on-red);border-radius:20px;padding:30px}
+.addr h3{font-size:28px;margin-bottom:12px}
+.addr address{font-style:normal;font-size:19px;line-height:1.55}
+.addr .btn{margin-top:20px}
+.hours{border:1px solid var(--line);border-radius:20px;padding:26px;background:var(--surface)}
+.hours dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 18px}
+.hours dt{color:var(--muted);font-weight:600}
+.hours dd{margin:0;font-weight:700}
+
+footer{margin-top:64px;border-top:1px solid var(--line);padding-bottom:80px}
+footer .wrap{padding-block:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:14px}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;padding-block:32px 72px}
+  .pide-art{max-width:300px;margin:0 auto;order:-1}
+  .order-card{grid-template-columns:1fr;padding:20px}
+  .badge{width:68px;height:68px;font-size:11px}
+  .groups,.two,.steps,.visit{grid-template-columns:1fr}
+  .sheet{padding:22px 18px}
+}
+</style>
+</head>
+<body>
+
+<div class="top"><div class="wrap">
+  <span>Kahvaltı <b>07.00 – 12.00</b> arası</span>
+  <span>Paket servis: <b class="num">0535 768 80 08</b></span>
+</div></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Bağcılar · Demirkapı</div>
+      <h1>Ballıca <span>Pide</span></h1>
+      <div class="sub">Osman Usta'nın Yeri</div>
+      <p class="lead">Patateslisinden pastırmalısına 19 çeşit pide, sabah kahvaltısı ve sıcak çorba. Paket servisle kapınıza geliyor.</p>
+      <div class="cta">
+        <a class="btn btn-gold" href="#menu">Menüyü Gör</a>
+        <a class="btn btn-ghost" href="tel:+905357688008">Sipariş Hattı</a>
+      </div>
+      <div class="facts">
+        <div><b class="num">19</b>çeşit pide</div>
+        <div><b class="num">₺280</b>'den başlayan fiyatlar</div>
+        <div><b class="num">07.00</b>'de kahvaltı</div>
+      </div>
+    </div>
+    <div class="pide-art" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <defs>
+          <radialGradient id="crust" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#f3c66b"/><stop offset=".7" stop-color="#d48a2f"/><stop offset="1" stop-color="#8f4a17"/></radialGradient>
+          <radialGradient id="fill" cx="50%" cy="50%" r="60%"><stop offset="0" stop-color="#c8471f"/><stop offset="1" stop-color="#8a2a12"/></radialGradient>
+        </defs>
+        <circle cx="200" cy="200" r="182" fill="none" stroke="#e2a92b" stroke-opacity=".35" stroke-width="2" stroke-dasharray="4 10"/>
+        <g transform="rotate(-28 200 200)">
+          <ellipse cx="200" cy="214" rx="172" ry="56" fill="#000" opacity=".25"/>
+          <path d="M28 200 C 70 150, 330 150, 372 200 C 330 250, 70 250, 28 200 Z" fill="url(#crust)"/>
+          <path d="M70 200 C 110 172, 290 172, 330 200 C 290 228, 110 228, 70 200 Z" fill="url(#fill)"/>
+          <g fill="#f6e4b8"><circle cx="130" cy="196" r="7"/><circle cx="168" cy="206" r="6"/><circle cx="205" cy="193" r="7"/><circle cx="240" cy="207" r="6"/><circle cx="275" cy="196" r="7"/></g>
+          <g fill="#3f7a2a"><ellipse cx="150" cy="190" rx="6" ry="3"/><ellipse cx="222" cy="212" rx="6" ry="3"/><ellipse cx="258" cy="188" rx="6" ry="3"/></g>
+          <path d="M28 200 L4 200 M372 200 L396 200" stroke="#b56a24" stroke-width="10" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <i class="ember" style="left:22%;animation-delay:0s"></i><i class="ember" style="left:48%;animation-delay:1.3s"></i><i class="ember" style="left:70%;animation-delay:2.4s"></i><i class="ember" style="left:35%;animation-delay:3.1s"></i>
+    </div>
+  </div>
+</header>
+
+<div class="wrap order">
+  <div class="order-card">
+    <div class="badge">Paket<br>Servis</div>
+    <div>
+      <h2>Telefonla sipariş verin</h2>
+      <div class="phones">
+        <div class="phone"><div><small>Sabit hat</small><a href="tel:+902124746016">0212 474 60 16</a></div><button class="copy" type="button" id="copy-sabit" data-num="0212 474 60 16">Kopyala</button></div>
+        <div class="phone"><div><small>Cep</small><a href="tel:+905357688008">0535 768 80 08</a></div><button class="copy" type="button" id="copy-cep" data-num="0535 768 80 08">Kopyala</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="catbar" id="menu" aria-label="Menü kategorileri"><div class="wrap">
+  <a href="#pideler" class="on">Pideler</a>
+  <a href="#kahvalti">Kahvaltı</a>
+  <a href="#corba">Çorba</a>
+  <a href="#icecekler">İçecekler</a>
+  <a href="#adres">Adres</a>
+</div></nav>
+
+<main>
+  <div class="wrap menu-head">
+    <h2>Menümüz</h2>
+    <div><span class="stamp">Fiyatlar 12.10.2026 tarihinde güncellendi</span></div>
+  </div>
+  <div class="wrap"><p style="margin:0;color:var(--muted)">Ürünlerin yanındaki <b style="color:var(--red)">+</b> ile sepetinizi hazırlayın, toplamı görün ve telefonda kolayca okuyun.</p></div>
+
+  <section class="wrap menu-sec" id="pideler">
+    <div class="sheet">
+      <div class="sheet-head"><h3>Pideler</h3><span>19 çeşit</span></div>
+      <div class="groups" id="g-pide"></div>
+      <div class="extra" id="g-extra"></div>
+    </div>
+  </section>
+
+  <section class="wrap menu-sec" id="kahvalti">
+    <div class="two">
+      <div class="sheet">
+        <div class="sheet-head"><h3>Kahvaltı</h3><span class="clock">07.00 – 12.00 arası</span></div>
+        <div id="g-kahvalti"></div>
+      </div>
+      <div class="sheet" id="corba">
+        <div class="sheet-head"><h3>Çorba</h3><span>Günün çorbası</span></div>
+        <div id="g-corba"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap menu-sec" id="icecekler">
+    <div class="sheet">
+      <div class="sheet-head"><h3>İçecekler</h3><span>Soğuk içecekler</span></div>
+      <div class="groups" id="g-icecek"></div>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <h2>Nasıl sipariş verilir?</h2>
+    <div class="steps">
+      <div><h3>Seçin</h3><p>Menüden istediklerinizi <b>+</b> ile sepete ekleyin.</p></div>
+      <div><h3>Arayın</h3><p>0212 474 60 16 veya 0535 768 80 08'i arayın.</p></div>
+      <div><h3>Afiyetle yiyin</h3><p>Siparişiniz paket servisle adresinize gelsin.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap block" id="adres" style="scroll-margin-top:80px">
+    <h2>Bizi ziyaret edin</h2>
+    <div class="visit">
+      <div class="addr">
+        <h3>Adres</h3>
+        <address>Demirkapı Mah. Velioğlu Cad.<br>Piri Reis Sok. No: 9<br>Bağcılar / İstanbul</address>
+        <a class="btn btn-gold" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Demirkap%C4%B1+Mah.+Velio%C4%9Flu+Cad.+Piri+Reis+Sok.+No%3A9+Ba%C4%9Fc%C4%B1lar+%C4%B0stanbul">Haritada Aç ↗</a>
+      </div>
+      <div class="hours">
+        <dl>
+          <dt>İşletme</dt><dd>Ballıca Pide · Osman Usta'nın Yeri</dd>
+          <dt>Kahvaltı</dt><dd class="num">07.00 – 12.00</dd>
+          <dt>Sabit hat</dt><dd class="num">0212 474 60 16</dd>
+          <dt>Cep</dt><dd class="num">0535 768 80 08</dd>
+          <dt>Servis</dt><dd>Paket servis mevcuttur</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <span>© 2026 Ballıca Pide · Osman Usta'nın Yeri</span>
+  <span>Fiyatlar 12.10.2026 tarihinde güncellenmiştir.</span>
+</div></footer>
+
+<div class="cart" id="cart" hidden><div class="wrap">
+  <div><span id="cart-count" class="num">0 ürün</span> · <b id="cart-total">₺0</b></div>
+  <button type="button" id="cart-open">Sepeti Gör</button>
+</div></div>
+
+<div class="panel" id="panel" hidden role="dialog" aria-label="Sepetiniz"><div class="wrap">
+  <div class="panel-head"><h3>Sepetiniz</h3><button class="x" type="button" id="panel-close">Kapat</button></div>
+  <div id="lines"></div>
+  <div class="total"><span>Toplam</span><span id="panel-total" class="num">₺0</span></div>
+  <div class="howto"><strong>Siparişi telefonla verin:</strong> <span class="num">0212 474 60 16</span> · <span class="num">0535 768 80 08</span><br>Arayınca bu listeyi okuyabilirsiniz.</div>
+  <div class="panel-actions">
+    <a class="btn btn-red" href="tel:+905357688008">Ara</a>
+    <button class="btn btn-line" type="button" id="copy-list">Listeyi Kopyala</button>
+    <button class="btn btn-line" type="button" id="clear">Sepeti Boşalt</button>
+  </div>
+</div></div>
+
+<script>
+var MENU={
+  pide:[
+    {g:"Sebzeli & Tavuklu",items:[["Patatesli",280],["Patates Kaşarlı",290],["Tavuklu",290],["Tavuk Kaşarlı",290]]},
+    {g:"Peynirli",items:[["Karışık Peynirli",310],["Kaşarlı",310],["Trabzon Kaşarlı",330]]},
+    {g:"Kıymalı & Yöresel",items:[["Kıymalı",365],["Kıyma Kaşarlı",375],["Bafra",365],["Trabzon",460]]},
+    {g:"Sucuk & Et",items:[["Sucuklu",390],["Sucuk Kaşarlı",400],["Kuşbaşılı",400],["Kuşbaşı Kaşarlı",400],["Kavurmalı",425],["Kavurma Kaşarlı",425],["Karışık",425],["Pastırmalı",490]]}
+  ],
+  kahvalti:[["Kahvaltı Tabağı",200],["Menemen",200],["Kavurma Yumurta",250]],
+  corba:[["Çorba",90]],
+  icecek:[
+    {g:"Ayran & Şalgam",items:[["Küçük Ayran",25],["Büyük Ayran",35],["Şalgam",40]]},
+    {g:"Su & Soda",items:[["Su",15],["Soda",20]]},
+    {g:"Gazlı İçecekler",items:[["Şişe İçecek",50],["Kutu İçecek",60],["1 Litre İçecek",80],["2,5 Litre İçecek",100]]}
+  ]
+};
+var cart={}, prices={};
+function tl(n){return "₺"+n.toLocaleString("tr-TR")}
+function row(it){prices[it[0]]=it[1];return '<div class="row"><span class="name">'+it[0]+'</span><span class="dots"></span><span class="price">'+tl(it[1])+'</span><button class="add" type="button" data-n="'+it[0]+'" aria-label="'+it[0]+' sepete ekle">+</button></div>'}
+function groups(arr){return arr.map(function(g){return '<div class="group"><h4>'+g.g+'</h4>'+g.items.map(row).join("")+'</div>'}).join("")}
+document.getElementById("g-pide").innerHTML=groups(MENU.pide);
+document.getElementById("g-extra").innerHTML='<span>Her pideye yumurta eklenebilir.</span>'+row(["Yumurta Farkı",10]);
+document.getElementById("g-kahvalti").innerHTML=MENU.kahvalti.map(row).join("");
+document.getElementById("g-corba").innerHTML=MENU.corba.map(row).join("");
+document.getElementById("g-icecek").innerHTML=groups(MENU.icecek);
+
+function render(){
+  var names=Object.keys(cart),count=0,total=0;
+  names.forEach(function(n){count+=cart[n];total+=cart[n]*prices[n]});
+  document.getElementById("cart").hidden=count===0;
+  if(count===0)document.getElementById("panel").hidden=true;
+  document.getElementById("cart-count").textContent=count+" ürün";
+  document.getElementById("cart-total").textContent=tl(total);
+  document.getElementById("panel-total").textContent=tl(total);
+  document.getElementById("lines").innerHTML=names.map(function(n){
+    return '<div class="line"><span><b>'+n+'</b><br><small style="color:var(--muted)">'+tl(prices[n])+' / adet</small></span><span class="qty"><button type="button" data-d="-1" data-n="'+n+'" aria-label="Azalt">−</button><span class="num">'+cart[n]+'</span><button type="button" data-d="1" data-n="'+n+'" aria-label="Artır">+</button></span><b class="num">'+tl(cart[n]*prices[n])+'</b></div>'}).join("");
+}
+document.addEventListener("click",function(e){
+  var a=e.target.closest(".add");
+  if(a){var n=a.dataset.n;cart[n]=(cart[n]||0)+1;a.classList.remove("pop");void a.offsetWidth;a.classList.add("pop");render();return}
+  var q=e.target.closest(".qty button");
+  if(q){var m=q.dataset.n;cart[m]+=+q.dataset.d;if(cart[m]<=0)delete cart[m];render()}
+});
+document.getElementById("cart-open").onclick=function(){document.getElementById("panel").hidden=false};
+document.getElementById("panel-close").onclick=function(){document.getElementById("panel").hidden=true};
+document.getElementById("clear").onclick=function(){cart={};render()};
+document.getElementById("copy-list").onclick=function(){
+  var b=this,t=Object.keys(cart).map(function(n){return cart[n]+" x "+n}).join("\n")+"\nToplam: "+document.getElementById("panel-total").textContent;
+  try{navigator.clipboard.writeText(t).then(function(){b.textContent="Kopyalandı"},function(){b.textContent="Kopyalanamadı"})}catch(_){b.textContent="Kopyalanamadı"}
+  setTimeout(function(){b.textContent="Listeyi Kopyala"},1600);
+};
+document.querySelectorAll(".copy").forEach(function(b){
+  b.addEventListener("click",function(){
+    var link=b.parentElement.querySelector("a");
+    function ok(){b.textContent="Kopyalandı";b.classList.add("done");setTimeout(function(){b.textContent="Kopyala";b.classList.remove("done")},1600)}
+    function fb(){var r=document.createRange();r.selectNodeContents(link);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Seçildi"}
+    try{navigator.clipboard.writeText(b.dataset.num).then(ok,fb)}catch(_){fb()}
+  });
+});
+/* aktif kategori */
+var links=document.querySelectorAll(".catbar a");
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){links.forEach(function(l){l.classList.toggle("on",l.getAttribute("href")==="#"+en.target.id)})}})},{rootMargin:"-30% 0px -60% 0px"});
+  ["pideler","kahvalti","corba","icecekler","adres"].forEach(function(id){io.observe(document.getElementById(id))});
+}
+</script>
+
+</body>
+</html>
